@@ -1,0 +1,22 @@
+<div class="color-container">
+  <h1>Mini r/place 🎨</h1>
+
+  <div class="color-controls">
+    <div class="color-picker-section">
+      <label for="colorPicker">Color:</label>
+      <input
+        id="colorPicker"
+        type="color"
+        [value]="selectedColor()"
+        (input)="onColorChange($event)"
+        class="color-picker"
+      />
+      <span class="current-color">{{ selectedColor() }}</span>
+    </div>
+  </div>
+</div>
+<div class="grid">
+  @for (cell of cells; track cell) {
+  <div class="cell" [style.background]="getCellColor()(cell)" (click)="colorCell(cell)"></div>
+  }
+</div>
