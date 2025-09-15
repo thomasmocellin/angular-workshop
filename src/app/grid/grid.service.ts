@@ -17,7 +17,7 @@ export class GridService {
 
     // Optimistic update: immediately update local grid
     this._grid.set(key, color);
-    this.grid.set(this._grid); // Trigger signal update
+    this.grid.set(new Map(this._grid)); // Create new Map instance to trigger signal update
 
     // Then sync to Firebase
     try {
@@ -39,7 +39,7 @@ export class GridService {
       this._grid.set(key, value as string);
     });
 
-    this.grid.set(this._grid); // Trigger signal update
+    this.grid.set(new Map(this._grid)); // Create new Map instance to trigger signal update
   }
 
   private listenToGridChanges() {
@@ -52,7 +52,7 @@ export class GridService {
 
       // Mutable update: directly modify the existing map
       this._grid.set(key, color);
-      this.grid.set(this._grid); // Trigger signal update
+      this.grid.set(new Map(this._grid)); // Create new Map instance to trigger signal update
     };
 
     onChildAdded(gridRef, updateCell);
